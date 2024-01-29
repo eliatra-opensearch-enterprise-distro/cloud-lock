@@ -1,4 +1,5 @@
 import org.opensearch.gradle.test.RestIntegTestTask
+import org.opensearch.gradle.info.BuildParams
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -92,6 +93,10 @@ repositories {
 
 test {
     include '**/*Tests.class'
+
+    if (BuildParams.runtimeJavaVersion >= JavaVersion.VERSION_18) {
+        jvmArgs += ["-Djava.security.manager=allow"]
+    }
 }
 
 task integTest(type: RestIntegTestTask) {
@@ -105,6 +110,10 @@ integTest {
     // The --debug-jvm command-line option makes the cluster debuggable; this makes the tests debuggable
     if (System.getProperty("test.debug") != null) {
         jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005'
+    }
+
+    if (BuildParams.runtimeJavaVersion >= JavaVersion.VERSION_18) {
+        jvmArgs += ["-Djava.security.manager=allow"]
     }
 }
 
