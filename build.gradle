@@ -93,10 +93,6 @@ repositories {
 
 test {
     include '**/*Tests.class'
-
-    if (BuildParams.runtimeJavaVersion >= JavaVersion.VERSION_18) {
-        jvmArgs += ["-Djava.security.manager=allow"]
-    }
 }
 
 task integTest(type: RestIntegTestTask) {
@@ -110,10 +106,6 @@ integTest {
     // The --debug-jvm command-line option makes the cluster debuggable; this makes the tests debuggable
     if (System.getProperty("test.debug") != null) {
         jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005'
-    }
-
-    if (BuildParams.runtimeJavaVersion >= JavaVersion.VERSION_18) {
-        jvmArgs += ["-Djava.security.manager=allow"]
     }
 }
 
@@ -146,4 +138,19 @@ dependencies {
     implementation 'com.google.guava:guava:33.1.0-jre'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
     implementation 'org.cryptacular:cryptacular:1.2.6'
+}
+
+
+tasks.withType(Test) {
+    jvmArgs('--add-opens=java.base/java.io=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/java.util.concurrent=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/java.time=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/java.util.stream=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/sun.nio.fs=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/java.nio.file=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/java.lang=ALL-UNNAMED')
+    jvmArgs('--add-opens=java.base/java.util=ALL-UNNAMED')
+    if (JavaVersion.current().compareTo(JavaVersion.VERSION_17) > 0) {
+        jvmArgs += ["-Djava.security.manager=allow"]
+    }
 }
