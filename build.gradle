@@ -7,11 +7,11 @@ apply plugin: 'opensearch.opensearchplugin'
 apply plugin: 'opensearch.yaml-rest-test'
 apply plugin: 'opensearch.pluginzip'
 
-def pluginName = 'eliatra-cloud-tresor'
-def pluginDescription = 'Eliatra Cloud Tresor: Encryption at rest for OpenSearch'
+def pluginName = 'eliatra-cloud-lock'
+def pluginDescription = 'Eliatra Cloud Lock: Encryption at rest for OpenSearch'
 def projectPath = 'com.eliatra'
-def pathToPlugin = 'cloud.tresor.plugin'
-def pluginClassName = 'EliatraCloudTresorPlugin'
+def pathToPlugin = 'cloud.lock.plugin'
+def pluginClassName = 'EliatraCloudLockPlugin'
 group = "com.eliatra"
 version = opensearch_version + '-0.0.1'
 
@@ -140,10 +140,10 @@ task updateVersion {
 }
 
 dependencies {
-    implementation 'com.google.crypto.tink:tink:1.7.0'
+    implementation 'com.google.crypto.tink:tink:1.13.0'
     implementation 'com.floragunn:codova:1.8.0'
     implementation 'com.floragunn:fluent-collections:1.0.1'
-    implementation 'com.google.guava:guava:33.0.0-jre'
-    implementation 'org.bouncycastle:bcprov-jdk18on:1.77'
+    implementation 'com.google.guava:guava:33.1.0-jre'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
     implementation 'org.cryptacular:cryptacular:1.2.6'
 }

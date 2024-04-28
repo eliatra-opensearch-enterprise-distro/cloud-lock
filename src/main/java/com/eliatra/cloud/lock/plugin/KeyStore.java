@@ -12,7 +12,7 @@
  *
  */
 
-package com.eliatra.cloud.tresor.plugin;
+package com.eliatra.cloud.lock.plugin;
 
 import com.eliatra.cloud.lock.crypto.SymmetricKek;
 import org.apache.lucene.util.SetOnce;

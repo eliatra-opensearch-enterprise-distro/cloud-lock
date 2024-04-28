@@ -5,4 +5,4 @@
         h: component
 
   - match:
-      $body: /^eliatra-cloud-tresor\n$/
+      $body: /^eliatra-cloud-lock\n$/

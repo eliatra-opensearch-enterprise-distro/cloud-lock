@@ -1,4 +1,4 @@
-# Eliatra Cloud Tresor
+# Eliatra Cloud Lock
 
 Encryption at rest for OpenSearch
 
