@@ -8,12 +8,12 @@ apply plugin: 'opensearch.yaml-rest-test'
 apply plugin: 'opensearch.pluginzip'
 
 def pluginName = 'eliatra-cloud-lock'
-def pluginDescription = 'Eliatra Cloud Lock: Encryption at rest for OpenSearch'
+def pluginDescription = 'Eliatra Cloud Lock: Encryption at Rest for OpenSearch'
 def projectPath = 'com.eliatra'
 def pathToPlugin = 'cloud.lock.plugin'
 def pluginClassName = 'EliatraCloudLockPlugin'
 group = "com.eliatra"
-version = opensearch_version + '-0.0.1'
+version = opensearch_version + '-1.0.0'
 
 licenseHeaders.enabled = false
 forbiddenApisMain.enabled = false
