@@ -12,7 +12,7 @@ def pluginDescription = 'Eliatra Cloud Lock: Encryption at Rest for OpenSearch'
 def projectPath = 'com.eliatra'
 def pathToPlugin = 'cloud.lock.plugin'
 def pluginClassName = 'EliatraCloudLockPlugin'
-group = "com.eliatra"
+
 
 
 licenseHeaders.enabled = false
@@ -70,8 +70,6 @@ buildscript {
             opensearch_build += "-${buildVersionQualifier}"
         }
 
-        version = "${opensearch_build}"
-
         targetCompatibility = JavaVersion.VERSION_11
         sourceCompatibility = JavaVersion.VERSION_11
     }
@@ -86,6 +84,11 @@ buildscript {
     dependencies {
         classpath "org.opensearch.gradle:build-tools:${opensearch_version}"
     }
+}
+
+allprojects {
+    group = "com.eliatra"
+    version = opensearch_build
 }
 
 repositories {
