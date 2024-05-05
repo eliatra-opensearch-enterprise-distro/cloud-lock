@@ -136,8 +136,13 @@ dependencies {
     implementation 'com.floragunn:codova:1.8.0'
     implementation 'com.floragunn:fluent-collections:1.0.1'
     implementation 'com.google.guava:guava:33.1.0-jre'
+    implementation 'com.google.guava:failureaccess:1.0.2'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
     implementation 'org.cryptacular:cryptacular:1.2.6'
+}
+
+bundlePlugin {
+    from('plugin-security.policy')
 }
 
 
