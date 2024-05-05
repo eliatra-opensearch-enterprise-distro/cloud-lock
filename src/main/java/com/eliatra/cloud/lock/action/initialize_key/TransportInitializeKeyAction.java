@@ -54,8 +54,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.security.AccessController;
 import java.security.KeyPair;
 import java.security.PrivateKey;
+import java.security.PrivilegedAction;
 import java.security.PublicKey;
 
 //manual action triggered via api
@@ -128,7 +130,15 @@ extends TransportMasterNodeAction<InitializeKeyRequest, InitializeKeyResponse> {
                 return;
             }
 
-            if(!KeyPairUtil.isKeyPair(publicClusterKey, privateClusterKey)) {
+            final PrivateKey finalPrivateClusterKey = privateClusterKey;
+            final boolean isSameKeyPair = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+                @Override
+                public Boolean run() {
+                    return KeyPairUtil.isKeyPair(publicClusterKey, finalPrivateClusterKey);
+                }
+            });
+
+            if(!isSameKeyPair) {
                 logger.error("Wrong key for this cluster");
                 listener.onFailure(new Exception("Wrong key for this cluster"));
                 return;

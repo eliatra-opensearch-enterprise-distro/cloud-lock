@@ -12,7 +12,7 @@ public class EliatraCloudLockPluginSettings {
 
     public static final StaticSettings.Attribute<Boolean> CLOUD_LOCK_ENABLED =
             StaticSettings.Attribute
-                    .define("eliatra.cloud_lock.enabledeliatra.cloud_lock.enabled")
+                    .define("eliatra.cloud_lock.enabled")
                     .withDefault(false)
                     .asBoolean();
 

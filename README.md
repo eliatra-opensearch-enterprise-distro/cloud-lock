@@ -1,10 +1,8 @@
 # Eliatra Cloud Lock
 
-Encryption at rest for OpenSearch
+Encryption at Rest for OpenSearch
 
-## Status
 
-Technology preview, do not use in production!
 
 ## License
 

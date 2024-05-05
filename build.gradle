@@ -13,7 +13,7 @@ def projectPath = 'com.eliatra'
 def pathToPlugin = 'cloud.lock.plugin'
 def pluginClassName = 'EliatraCloudLockPlugin'
 group = "com.eliatra"
-version = opensearch_version + '-1.0.0'
+
 
 licenseHeaders.enabled = false
 forbiddenApisMain.enabled = false
@@ -62,6 +62,18 @@ validateNebulaPom.enabled = false
 buildscript {
     ext {
         opensearch_version = System.getProperty("opensearch.version", "2.11.1")
+        buildVersionQualifier = System.getProperty("build.version_qualifier", "")
+        version_tokens = opensearch_version.tokenize('-')
+        opensearch_build = version_tokens[0] + '.0'
+
+        if (buildVersionQualifier) {
+            opensearch_build += "-${buildVersionQualifier}"
+        }
+
+        version = "${opensearch_build}"
+
+        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
     }
 
     repositories {
@@ -159,3 +171,5 @@ tasks.withType(Test) {
         jvmArgs += ["-Djava.security.manager=allow"]
     }
 }
+
+//check.dependsOn spotlessCheck
